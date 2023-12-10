@@ -16,11 +16,8 @@ kabul etmek anlamsız olur.
 
 
 '''
-# Veri setini okumak için Pandas kütüphanesini kullanıyoruz.
-# Pandas kütüphanesini, 'pd' adında bir değişken olarak dahil ediyoruz.
+
 import pandas as pd
-
-
 
 def sayisallastirma(veriSeti):
     # Veri setininin yolunu bir string ifade olduğunda, 'dosyaYolu' adlı değişkende tutmak daha sağlıklı olur.
@@ -31,7 +28,7 @@ def sayisallastirma(veriSeti):
     #veriSeti = pd.read_csv(dosyaYolu);
 
     # Konsol ekranında yazdırmak için 'print' metodu kullanılabilir. Spyder IDE kullanıyorsak, 'Variable Explorer' sekmesinde, Ram'e (belleğe) kaydedilen veriler görülebilir.
-    print(veriSeti)
+    #print(veriSeti)
 
 
     # Kategorik verileri, sayısal verilere dönüştürme aşaması
@@ -56,7 +53,7 @@ def sayisallastirma(veriSeti):
 
     # İlk önce kaç farklı bölge var, onları sayalım
 
-    print(geography.value_counts())
+    #print(geography.value_counts())
 
     # Veri setinde 3 adet bölge, kişilere dağılmış durumda. Bu bölgeler France, Germany, Spain
 

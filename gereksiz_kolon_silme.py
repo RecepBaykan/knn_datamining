@@ -18,18 +18,24 @@ Tabi yine de belirli satırlar arasında bir birbirine yakın özellik gösteren
 ama eğitim seti, test seti belki de doğrulama seti oluşturmak için satırlar karıştırılacak zaten o yüzden bu istisna
 olan durumun da bir anlamı yoktur.
 
-Diğer bir neden veri karmakşılığına yol açar. Veri madenciliğinde bir çıkarım
+Diğer bir neden veri karmakşılığına yol açar, aşırı öğrenmeye yol açar.
+
+Pandas kütüphanesinin DataFrame sınıfı (yani veri setimiz diyebiliriz) içinde bulunan drop fonksiyonu sütun silmemize olanak
+sağlar
 
     
 '''
 
-import pandas as pd
 
 def kolonSil(veriSeti):
+    
     
     veriSeti = veriSeti.drop("RowNumber", axis = 1)
     veriSeti = veriSeti.drop("CustomerId", axis = 1)
     veriSeti = veriSeti.drop("Surname", axis = 1)
     
     
+    
     return veriSeti
+
+

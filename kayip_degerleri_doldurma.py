@@ -6,18 +6,12 @@ Bu py dosyası, veri setindeki kayıp değerleri bulmak ve onları düzenlemek i
 Benim ödevimin veri seti 'Churn_Modelling' olduğu  kayıp veri bulunmamaktadır. 
 Bu yüzden kayıp verileri kendim oluşturacağım.
 
-Bu kayıp verileri, rastge
-
-
-
-
+Daha sonra kayıp verileri, dolduracağız
 
 '''
 
 import pandas as pd
-import random as rand
 import numpy as np
-
 # İlk önce Churn_Modelling veri setini, Pandas kütüphanesini yardımıyla bir değişkene aktaralım
     
 def kayipVeriOlustur(veriSeti):
@@ -36,8 +30,9 @@ def kayipVeriOlustur(veriSeti):
     for i in range(veriSeti.shape[0]):
         
         for j in range(3,veriSeti.shape[1]): 
-            
-            rastgele_sayi = rand.randint(1, 100)
+            if j == 10:
+                break
+            rastgele_sayi =  np.random(0,100,1)
             if rastgele_sayi<2:
                 veriSeti.iloc[i,j] = np.nan
     return veriSeti
@@ -48,19 +43,22 @@ def kayipVeriOlustur(veriSeti):
 def kayipVeriGider(veriSeti):
     # Şimdi kayıp verileri düzenleyelim  
     # İlk önce Churn_Modelling adlı veri setindeki ilk 3 sütun hariç diğer sütunları değişkenlere aktaralım
-    # Bunun için dışarıdan bir indis sayacı ekledim
-    indis = 0;
+    # Bunun için dışarıdan bir sutun sayacı ekledim
+    sutun_sayacı = 0;
     
     # ilk önce sütun isimlerini alalım
     # Sütün isimleri, Pandas ile oluşturduğumuz veriSeti değişkenin sonuna .columns ekleyerek ulaşabileceğimiz bir koleksiyon/dizi/liste şeklinde.
     # Bu isimleri veriSeti[sütünİsmi] (aşağıdada belirtilen foreach yapısında veriSeti[colum]) şeklinde tek tek parçalayıp, işlemleri yapabiliriz.
     for colum in veriSeti.columns:
         
+        if colum == 'Exited':
+            break
         
+        sutun_sayacı =  sutun_sayacı + 1;
         
-        indis = indis + 1;
+            
         # ilk 3 sütun anlamsız olduğu için 4. sütündan başlayalım
-        if indis > 3:
+        if  sutun_sayacı > 3:
             # VeriSetini sütünlara ayırıp işleme öyle devam ediliyor
             veri = veriSeti[colum]
            
@@ -72,12 +70,14 @@ def kayipVeriGider(veriSeti):
               # Sütünları gezerken Pandas kütüphanesini isna fonksiyonunu kullanarak sütunun satılarını gezerken 'NaN' ifadeleri kontrol ediyor.
               if pd.isna(veri[i]):
                    # NaN veri var ise yani kayıp veri var ise sütunda en çok tekrar edilen veriyi, kayıp veriyle değiştiriyor.
-                   veri[i] = veri.value_counts().max();
+                   veri[i] = veriSeti[colum].value_counts().max();
                    
                    
                     
             # Kayıp verileri giderilen sütun, veri setindeki karşılık gelen sütun ile değiştiriliyor
             veriSeti[colum] = veri
+            
+           
                     
 
     #veriSeti.to_csv('Churn_Modelling.csv', index = False)
